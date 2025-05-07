@@ -22,7 +22,7 @@
             :aria-controls="'collapse' + clase.id"
           >
             {{ clase.titulo }}
-            <Check class="ms-auto text-success" v-if="clase.completada" />
+            <Check class="ms-2 text-success" v-if="clase.completada" />
             <PlayCircle class="ms-auto text-primary" v-else />
           </button>
         </h2>
