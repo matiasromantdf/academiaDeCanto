@@ -74,7 +74,7 @@ onBeforeUnmount(() => {
 }
 
 .sidebar.retraido {
-  width: 60px;
+  width: 80px;
 }
 
 .sidebar.mobile {
@@ -90,7 +90,6 @@ onBeforeUnmount(() => {
   justify-content: space-between;
   align-items: center;
   height: 40px;
-  overflow-y:hidden;
 }
 
 .toggle {

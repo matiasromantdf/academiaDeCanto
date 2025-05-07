@@ -35,18 +35,36 @@
         >
           <div class="accordion-body">
             <p>{{ clase.descripcion }}</p>
-            <ul>
-              <li>
-                <FileText class="me-2" /> <a :href="clase.pdf" target="_blank">Ver PDF</a>
+
+            <!-- Tabs -->
+            <ul class="nav nav-tabs mb-3" :id="'tabs-' + clase.id" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" :id="'pdf-tab-' + clase.id" data-bs-toggle="tab" :data-bs-target="'#pdf-' + clase.id" type="button" role="tab">PDF</button>
               </li>
-              <li>
-                <Video class="me-2" /> <a :href="clase.video" target="_blank">Ver Video</a>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" :id="'video-tab-' + clase.id" data-bs-toggle="tab" :data-bs-target="'#video-' + clase.id" type="button" role="tab">Video</button>
               </li>
-              <li>
-                <ClipboardCheck class="me-2" />
-                <a :href="clase.cuestionario" target="_blank">Realizar Cuestionario</a>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" :id="'quiz-tab-' + clase.id" data-bs-toggle="tab" :data-bs-target="'#quiz-' + clase.id" type="button" role="tab">Cuestionario</button>
               </li>
             </ul>
+
+            <div class="tab-content" :id="'tab-content-' + clase.id">
+              <div class="tab-pane fade show active" :id="'pdf-' + clase.id" role="tabpanel">
+               <PdfViewer :url="clase.pdf"/>
+              </div>
+              <div class="tab-pane fade" :id="'video-' + clase.id" role="tabpanel">
+                <video controls class="w-100" style="max-height: 400px;">
+                  <source :src="clase.video" type="video/mp4" />
+                  Tu navegador no soporta el video.
+                </video>
+              </div>
+              <div class="tab-pane fade" :id="'quiz-' + clase.id" role="tabpanel">
+                <a :href="clase.cuestionario" target="_blank" class="btn btn-outline-primary">
+                  Abrir cuestionario
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -56,14 +74,13 @@
 
 <script setup>
 import { FileText, Video, ClipboardCheck, Check, PlayCircle } from 'lucide-vue-next'
-
-// Simulación de clases
+import PdfViewer from '../components/PdfViewer.vue'
 const clases = [
   {
     id: 1,
     titulo: 'Clase 1 - Respiración y Postura',
     descripcion: 'Aprendé las bases fundamentales del canto.',
-    pdf: '/pdfs/clase1.pdf',
+    pdf: 'https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf',
     video: '/videos/clase1.mp4',
     cuestionario: '/cuestionarios/clase1',
     completada: true
@@ -72,7 +89,7 @@ const clases = [
     id: 2,
     titulo: 'Clase 2 - Calentamiento Vocal',
     descripcion: 'Ejercicios prácticos para preparar tu voz.',
-    pdf: '/pdfs/clase2.pdf',
+    pdf: 'https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf',
     video: '/videos/clase2.mp4',
     cuestionario: '/cuestionarios/clase2',
     completada: true
@@ -80,24 +97,24 @@ const clases = [
   {
     id: 3,
     titulo: 'Clase 3 - Afinación y Registro',
-    descripcion: 'Ejercicios de afinación y reconocimiento vocal.',
-    pdf: '/pdfs/clase3.pdf',
+    pdf: 'https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf',
+    pdf: 'https://www.orimi.com/pdf-test.pdf',
     video: '/videos/clase3.mp4',
     cuestionario: '/cuestionarios/clase3',
-    completada: false // Esta es la clase actual
+    completada: false
   },
   {
     id: 4,
     titulo: 'Clase 4 - Interpretación',
-    descripcion: 'Interpretar canciones con emoción y técnica.',
-    pdf: '/pdfs/clase4.pdf',
+    pdf: 'https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf',
+    pdf: 'https://www.orimi.com/pdf-test.pdf',
     video: '/videos/clase4.mp4',
     cuestionario: '/cuestionarios/clase4',
-    completada: false // No debe mostrarse
+    completada: false
   }
 ]
 
-// Mostrar sólo clases completadas + la primera incompleta (actual)
+// Solo mostrar clases completadas + la clase actual (primera no completada)
 const clasesFiltradas = clases.filter((clase, index) => {
   const completadas = clases.filter(c => c.completada)
   const siguiente = clases.find(c => !c.completada)
