@@ -13,11 +13,15 @@
     <nav class="nav">
       <router-link to="/" class="link" active-class="active">
         <Home />
-        <span class="ms-2" v-if="open || isMobile">home</span>
+        <span class="ms-2" v-if="open || isMobile">HOME</span>
       </router-link>
        <router-link to="/clases" class="link" active-class="active">
         <LibraryBig />
-        <span class="ms-2" v-if="open || isMobile">Clases</span>
+        <span class="ms-2" v-if="open || isMobile">CLASES</span>
+      </router-link>
+      <router-link to="/mensajes" class="link" active-class="active">
+        <MessagesSquare />
+        <span class="ms-2" v-if="open || isMobile">MENSAJES</span>
       </router-link>
      
     </nav>
@@ -26,7 +30,7 @@
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
-import { Home, LibraryBig} from 'lucide-vue-next'
+import { Home, LibraryBig,MessagesSquare} from 'lucide-vue-next'
 
 const open = ref(true)
 const isMobile = ref(false)
@@ -109,7 +113,7 @@ onBeforeUnmount(() => {
 .link {
   color: #bdc3c7;
   text-decoration: none;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.5rem;
   margin-bottom: 0.5rem;
   border-radius: 4px;
   transition: background 0.2s;
