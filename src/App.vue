@@ -1,7 +1,7 @@
 <template>
   <div class="layout">
     <Sidebar />
-    <main class="content">
+    <main class="container mt-5">
       <router-view />
     </main>
   </div>

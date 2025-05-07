@@ -3,11 +3,11 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 // Importa tus vistas o componentes
 import Home from '../views/Home.vue'
-// import About from '../views/About.vue'
+import Clases from '../views/Clases.vue'
 
 const routes = [
   { path: '/', name: 'Home', component: Home },
-//   { path: '/about', name: 'About', component: About }
+  { path: '/clases', name: 'Clases', component: Clases }
 ]
 
 const router = createRouter({

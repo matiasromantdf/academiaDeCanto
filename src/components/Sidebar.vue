@@ -2,7 +2,7 @@
 <button v-if="isMobile && !open" class="floating-toggle" @click="toggleSidebar">
   ☰
 </button>
-  <aside :class="['sidebar', { collapsed: !open, mobile: isMobile && !open }]">
+  <aside :class="['sidebar', { retraido: !open, mobile: isMobile && !open }]">
     <div class="header">
       <h2 v-if="open || isMobile">Mi App</h2>
       <button class="toggle" @click="toggleSidebar">
@@ -12,23 +12,21 @@
 
     <nav class="nav">
       <router-link to="/" class="link" active-class="active">
-        <span v-if="open || isMobile">Inicio</span>
-        <span v-else title="Inicio">🏠</span>
+        <Home />
+        <span class="ms-2" v-if="open || isMobile">home</span>
       </router-link>
-      <router-link to="/about" class="link" active-class="active">
-        <span v-if="open || isMobile">Acerca</span>
-        <span v-else title="Acerca">ℹ️</span>
+       <router-link to="/clases" class="link" active-class="active">
+        <LibraryBig />
+        <span class="ms-2" v-if="open || isMobile">Clases</span>
       </router-link>
-      <router-link to="/contact" class="link" active-class="active">
-        <span v-if="open || isMobile">Contacto</span>
-        <span v-else title="Contacto">📞</span>
-      </router-link>
+     
     </nav>
   </aside>
 </template>
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { Home, LibraryBig} from 'lucide-vue-next'
 
 const open = ref(true)
 const isMobile = ref(false)
@@ -75,15 +73,15 @@ onBeforeUnmount(() => {
   box-shadow: 2px 0 5px rgba(0,0,0,0.1);
 }
 
-.sidebar .collapsed {
+.sidebar.retraido {
   width: 60px;
 }
 
-.sidebar .mobile {
+.sidebar.mobile {
   transform: translateX(-100%);
 }
 
-.sidebar .mobile .open {
+.sidebar.mobile.open {
   transform: translateX(0);
 }
 
@@ -91,6 +89,8 @@ onBeforeUnmount(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 40px;
+  overflow-y:hidden;
 }
 
 .toggle {
@@ -147,7 +147,7 @@ onBeforeUnmount(() => {
   border: none;
   padding: 0.6rem 0.8rem;
   font-size: 1.2rem;
-  border-radius: 4px;
+  border-radius:0px 5px 5px 0px;
   cursor: pointer;
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
