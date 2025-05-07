@@ -98,7 +98,6 @@ const clases = [
     id: 3,
     titulo: 'Clase 3 - Afinación y Registro',
     pdf: 'https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf',
-    pdf: 'https://www.orimi.com/pdf-test.pdf',
     video: '/videos/clase3.mp4',
     cuestionario: '/cuestionarios/clase3',
     completada: false
@@ -107,7 +106,6 @@ const clases = [
     id: 4,
     titulo: 'Clase 4 - Interpretación',
     pdf: 'https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf',
-    pdf: 'https://www.orimi.com/pdf-test.pdf',
     video: '/videos/clase4.mp4',
     cuestionario: '/cuestionarios/clase4',
     completada: false
