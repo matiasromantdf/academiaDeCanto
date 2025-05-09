@@ -1,7 +1,7 @@
 <template>
   <div class="container py-5">
     <div class="text-center mb-4">
-      <h2 class="fw-bold">Tus Clases de Canto</h2>
+      <h2 class="fw-bold">Materia {{route.params.materiaId}}</h2>
       <p class="text-muted">Solo se muestran las clases completadas y la clase actual.</p>
     </div>
 
@@ -73,8 +73,11 @@
 </template>
 
 <script setup>
+import { useRoute } from 'vue-router';
 import { FileText, Video, ClipboardCheck, Check, PlayCircle } from 'lucide-vue-next'
 import PdfViewer from '../components/PdfViewer.vue'
+
+const route = useRoute();
 const clases = [
   {
     id: 1,

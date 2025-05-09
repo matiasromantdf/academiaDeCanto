@@ -10,6 +10,7 @@
         <div
           class="card shadow-lg"
           :style="{ background: customColors[index % customColors.length] }"
+          @click="verMateria(materia.id)"
         >
           <div class="card-body">
             <h5 class="card-title">{{ materia.nombre }}</h5>
@@ -34,34 +35,41 @@
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router';
+const router = useRouter();
+
 const materias = [
   {
+    id: 1,
     nombre: "Técnica Vocal",
     avance: 75,
     descripcion: "Aprendé a controlar tu voz, mejorar la respiración y proyectar con claridad."
   },
   {
+    id: 2,
     nombre: "Interpretación",
     avance: 50,
     descripcion: "Desarrollá la capacidad de transmitir emociones a través del canto."
   },
   {
+    id: 3,
     nombre: "Repertorio",
     avance: 90,
     descripcion: "Trabajamos canciones adaptadas a tu estilo para preparar presentaciones."
   },
   {
+    id: 4,
     nombre: "Teoría Musical",
     avance: 30,
     descripcion: "Estudiá los fundamentos de la música: notas, escalas, ritmo y armonía."
   },
   {
+    id: 5,
     nombre: "Dicción y Fonética",
     avance: 60,
     descripcion: "Mejorá tu pronunciación, articulación y claridad al cantar."
   }
 ];
-
 
 const customColors = [
   "linear-gradient(135deg, #74ebd5, #ACB6E5)",
@@ -70,6 +78,13 @@ const customColors = [
   "linear-gradient(135deg, #c2e9fb, #a1c4fd)",
   "linear-gradient(135deg, #fddb92, #d1fdff)",
 ];
+
+const verMateria = (materiaId)=>{
+    console.log(materiaId);
+    router.push(`/materias/${materiaId}/clases`);
+}
+
+
 </script>
 
 <style scoped>
