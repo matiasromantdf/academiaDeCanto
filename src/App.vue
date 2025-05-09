@@ -1,14 +1,21 @@
 <template>
   <div class="layout">
-    <Sidebar />
+    <Sidebar :cerrar = "modalCerrado"/>
     <main class="container mt-5">
-      <router-view />
+      <router-view @click="cerrarModal"/>
     </main>
   </div>
 </template>
 
 <script setup>
 import Sidebar from './components/Sidebar.vue'
+import {ref} from 'vue'
+
+const modalCerrado = ref(false)
+
+const cerrarModal=()=>{
+  modalCerrado.value = !modalCerrado.value
+}
 </script>
 
 <style>

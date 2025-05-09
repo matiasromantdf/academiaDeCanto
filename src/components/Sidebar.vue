@@ -2,7 +2,7 @@
 <button v-if="isMobile && !open" class="floating-toggle" @click="toggleSidebar">
   ☰
 </button>
-  <aside :class="['sidebar', { retraido: !open, mobile: isMobile && !open }]">
+  <aside :class="['sidebar', { retraido: (!open), mobile: isMobile && !open }]">
     <div class="header">
       <h2 v-if="open || isMobile">Mi App</h2>
       <button class="toggle" @click="toggleSidebar">
@@ -15,9 +15,9 @@
         <Home />
         <span class="ms-2" v-if="open || isMobile">HOME</span>
       </router-link>
-       <router-link to="/clases" class="link" active-class="active">
+       <router-link to="/materias" class="link" active-class="active">
         <LibraryBig />
-        <span class="ms-2" v-if="open || isMobile">CLASES</span>
+        <span class="ms-2" v-if="open || isMobile">MATERIAS</span>
       </router-link>
       <router-link to="/mensajes" class="link" active-class="active">
         <MessagesSquare />
@@ -29,7 +29,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
 import { Home, LibraryBig,MessagesSquare} from 'lucide-vue-next'
 
 const open = ref(true)
@@ -59,6 +59,19 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener('resize', handleResize)
 })
+const props = defineProps({
+  cerrar: Boolean
+})
+
+
+watch(
+  () => props.cerrar,
+  (newValue, oldValue) => {
+   if(open.value == true){
+    open.value = false
+   }
+  }
+)
 </script>
 
 <style scoped>
