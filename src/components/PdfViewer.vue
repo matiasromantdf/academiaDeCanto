@@ -1,17 +1,23 @@
 <template>
   <div class="pdf-container" ref="pdfContainer">
     <canvas ref="canvasRef" class="w-100" />
-    <div class="navigation">
-      <button @click="prevPage" :disabled="pageNum <= 1">Anterior</button>
-      <span>Página {{ pageNum }} / {{ totalPages }}</span>
-      <button @click="nextPage" :disabled="pageNum >= totalPages">Siguiente</button>
+    <div class="navigation mb-3">
+      <button @click="prevPage" :disabled="pageNum <= 1" class="nav-btn">
+        <ArrowBigLeft/> Anterior
+      </button>
+      <span class="page-indicator">Página {{ pageNum }} / {{ totalPages }}</span>
+      <button @click="nextPage" :disabled="pageNum >= totalPages" class="nav-btn">
+        Siguiente <ArrowBigRight/>
+      </button>
     </div>
   </div>
 </template>
 
+
 <script setup>
 import * as pdfjsLib from 'pdfjs-dist'
 import { ref, onMounted } from 'vue'
+import { ArrowBigRight, ArrowBigLeft} from 'lucide-vue-next'
 
 // Configuración global de PDF.js
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js'
@@ -91,6 +97,7 @@ onMounted(loadPdf)
   padding: 1rem;
   border-radius: 8px;
   background: #f9f9f9;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .navigation {
@@ -98,5 +105,42 @@ onMounted(loadPdf)
   justify-content: space-between;
   align-items: center;
   margin-top: 10px;
+}
+
+.nav-btn {
+  background-color: #f0b12b; /* Color de fondo de los botones */
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.nav-btn:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+.nav-btn:hover:not(:disabled) {
+  background-color: #e09e2b; /* Color de hover */
+}
+
+.page-indicator {
+  font-size: 1.2rem;
+  color: #333;
+  font-weight: bold;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.fas {
+  font-size: 1.2rem;
 }
 </style>
