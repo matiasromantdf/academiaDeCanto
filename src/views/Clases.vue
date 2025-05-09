@@ -1,11 +1,13 @@
 <template>
   <div class="container py-5">
-    <div class="text-center mb-4">
-      <h2 class="fw-bold">Materia {{route.params.materiaId}}</h2>
-      <p class="text-muted">Solo se muestran las clases completadas y la clase actual.</p>
-    </div>
 
-    <div class="accordion" id="accordionClases">
+    <div class="p-4 rounded shadow mb-4 text-center" :style="{ background: bgColor }">
+  <h2 class="fw-bold mb-2">Materia - nombre materia</h2>
+  <p class="mb-0">Solo se muestran las clases completadas y la clase actual.</p>
+</div>
+
+
+    <div class="accordion rounded shadow" id="accordionClases">
       <div
         v-for="(clase, index) in clasesFiltradas"
         :key="clase.id"
@@ -75,9 +77,11 @@
 <script setup>
 import { useRoute } from 'vue-router';
 import { FileText, Video, ClipboardCheck, Check, PlayCircle } from 'lucide-vue-next'
+import { ref,onMounted } from 'vue'
 import PdfViewer from '../components/PdfViewer.vue'
-
+ 
 const route = useRoute();
+const bgColor = ref('');
 const clases = [
   {
     id: 1,
@@ -121,4 +125,10 @@ const clasesFiltradas = clases.filter((clase, index) => {
   const siguiente = clases.find(c => !c.completada)
   return clase.completada || clase.id === siguiente?.id
 })
+
+onMounted(() => {
+  bgColor.value =localStorage.getItem('bgColor');
+  console.log(bgColor.value)
+  
+});
 </script>

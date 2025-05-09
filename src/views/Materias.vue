@@ -10,7 +10,7 @@
         <div
           class="card shadow-lg"
           :style="{ background: customColors[index % customColors.length] }"
-          @click="verMateria(materia.id)"
+          @click="verMateria(materia.id, index)"
         >
           <div class="card-body">
             <h5 class="card-title">{{ materia.nombre }}</h5>
@@ -79,7 +79,8 @@ const customColors = [
   "linear-gradient(135deg, #fddb92, #d1fdff)",
 ];
 
-const verMateria = (materiaId)=>{
+const verMateria = (materiaId,index)=>{
+    localStorage.setItem('bgColor', customColors[index])
     console.log(materiaId);
     router.push(`/materias/${materiaId}/clases`);
 }

@@ -76,8 +76,8 @@ watch(
 
 <style scoped>
 .sidebar {
-  background-color: #2c3e50;
-  color: white;
+  background-color: #f2f5f5; /* fondo base */
+  color: #2c3e50;
   height: 100vh;
   padding: 1rem;
   width: 220px;
@@ -87,7 +87,7 @@ watch(
   left: 0;
   overflow-y: auto;
   z-index: 1000;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar.retraido {
@@ -96,6 +96,10 @@ watch(
 
 .sidebar.mobile {
   transform: translateX(-100%);
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: transform 0.3s ease;
 }
 
 .sidebar.mobile.open {
@@ -112,7 +116,7 @@ watch(
 .toggle {
   background: none;
   border: none;
-  color: white;
+  color: #f0b12b; /* color acento */
   font-size: 1.4rem;
   cursor: pointer;
 }
@@ -124,47 +128,39 @@ watch(
 }
 
 .link {
-  color: #bdc3c7;
+  color: #2c3e50;
   text-decoration: none;
   padding: 0.5rem 0.5rem;
   margin-bottom: 0.5rem;
   border-radius: 4px;
-  transition: background 0.2s;
+  transition: background 0.2s, color 0.2s;
   display: flex;
   align-items: center;
 }
 
 .link:hover {
-  background-color: #34495e;
+  background-color: #f7e49d; /* color hover */
+  color: #2c3e50;
 }
 
 .active {
-  background-color: #1abc9c;
-  color: white;
-}
-.sidebar.mobile {
-  transform: translateX(-100%);
-  position: fixed;
-  top: 0;
-  left: 0;
-  transition: transform 0.3s ease;
+  background-color: #b2e7f7; /* color activo */
+  color: #2c3e50;
+  font-weight: bold;
 }
 
-.sidebar.mobile.open {
-  transform: translateX(0);
-}
 .floating-toggle {
   position: fixed;
   top: 0rem;
   left: 0rem;
   z-index: 1100;
-  background-color: #2c3e50;
+  background-color: #f0b12b;
   color: white;
   border: none;
   padding: 0.6rem 0.8rem;
   font-size: 1.2rem;
-  border-radius:0px 5px 5px 0px;
+  border-radius: 0px 5px 5px 0px;
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 </style>
