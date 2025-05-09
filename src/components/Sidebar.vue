@@ -13,24 +13,27 @@
     <nav class="nav">
       <router-link to="/" class="link" active-class="active">
         <Home />
-        <span class="ms-2" v-if="open || isMobile">HOME</span>
+        <span class="ms-2" v-if="open || isMobile">Home</span>
       </router-link>
        <router-link to="/materias" class="link" active-class="active">
         <LibraryBig />
-        <span class="ms-2" v-if="open || isMobile">MATERIAS</span>
+        <span class="ms-2" v-if="open || isMobile">Materias</span>
       </router-link>
       <router-link to="/mensajes" class="link" active-class="active">
         <MessagesSquare />
-        <span class="ms-2" v-if="open || isMobile">MENSAJES</span>
+        <span class="ms-2" v-if="open || isMobile">Mensajes</span>
       </router-link>
-     
+      <router-link to="/perfil" class="link" active-class="active">
+        <User /> <!-- Puedes cambiar el ícono si lo deseas -->
+        <span class="ms-2" v-if="open || isMobile">Mi perfil</span>
+      </router-link>
     </nav>
   </aside>
 </template>
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
-import { Home, LibraryBig,MessagesSquare} from 'lucide-vue-next'
+import { Home, LibraryBig,MessagesSquare, User} from 'lucide-vue-next'
 
 const open = ref(true)
 const isMobile = ref(false)
